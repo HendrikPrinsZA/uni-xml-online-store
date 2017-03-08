@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="Movies">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="Available" />
+            <xs:element ref="Upcomming" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Available">
+    <xs:complexType>
+        <xs:sequence>
+	        <xs:element name="Movie" minOccurs="0" maxOccurs="unbounded">
+		        <xs:complexType>
+				    <xs:sequence>
+				        <xs:element name="title" type="xs:string" />
+				        <xs:element name="rated" type="xs:string" />
+				        <xs:element name="studio" type="xs:string" />
+				        <xs:element ref="directors" />
+				        <xs:element ref="bdReleaseDate" />
+				        <xs:element ref="runtime" />
+				        <xs:element ref="reception" />
+			        </xs:sequence>
+					<xs:attribute name="coverImage" type="xs:string"/>
+		        </xs:complexType>
+	        </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Upcomming">
+    <xs:complexType>
+        <xs:sequence>
+	        <xs:element name="Movie" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+				    <xs:sequence>
+		                <xs:element name="title" type="xs:string" />
+		                <xs:element name="rated" type="xs:string" />
+		                <xs:element name="studio" type="xs:string" />
+		                <xs:element ref="bdReleaseDate" />
+		                <xs:element ref="runtime" />
+                    </xs:sequence>
+		        </xs:complexType>   
+	        </xs:element>	   
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="directors">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="director" type="xs:string" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+
+<xs:element name="bdReleaseDate">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="day" type="xs:string"/>
+	        <xs:element name="month" type="xs:string"/>
+	        <xs:element name="year" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="runtime">
+    <xs:complexType>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="unit" type="xs:string" default="min" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="reception">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="stills"/>
+	        <xs:element ref="content"/>  
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="stills">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="still" minOccurs="1" maxOccurs="3"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="still">
+    <xs:complexType>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="img" type="xs:string"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="content">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="paragraph" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+</xs:schema>
